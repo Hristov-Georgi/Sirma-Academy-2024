@@ -5,6 +5,6 @@ import java.math.BigDecimal;
 public interface Sellable {
 
     BigDecimal getPrice();
-    BigDecimal setPrice();
+    void setPrice(double price);
 
 }

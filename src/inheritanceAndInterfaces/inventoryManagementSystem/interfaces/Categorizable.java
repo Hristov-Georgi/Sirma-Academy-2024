@@ -1,7 +1,9 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.interfaces;
 
+import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
+
 public interface Categorizable {
 
     String getCategory();
-    String setCategory();
+    void setCategory(Category category);
 }

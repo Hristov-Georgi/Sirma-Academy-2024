@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface Item {
 
-    String getDetails();
+    String getItemDetails();
     BigDecimal calculateValue();
     String getItemDescription();
 
