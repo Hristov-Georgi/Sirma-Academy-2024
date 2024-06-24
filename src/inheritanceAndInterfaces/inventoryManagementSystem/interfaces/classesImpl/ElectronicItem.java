@@ -6,8 +6,8 @@ public class ElectronicItem extends InventoryItem {
 
     private double weight;
 
-    public ElectronicItem(int id, double quantity, Category category, double price, double weight) {
-        super(id, quantity, category, price);
+    public ElectronicItem(String category, double price, int id, double quantity, double weight) {
+        super(category, price, id, quantity);
         this.weight = weight;
     }
 

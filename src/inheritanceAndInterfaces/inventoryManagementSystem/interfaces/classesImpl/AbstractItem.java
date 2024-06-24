@@ -13,8 +13,8 @@ public abstract class AbstractItem implements Item, Breakable, Categorizable, Pe
     private String details;
     private BigDecimal price;
 
-    public AbstractItem(Category category, double price) {
-        this.category = category;
+    public AbstractItem(String category, double price) {
+        this.category = Category.valueOf(category);
         this.setPrice(price);
     }
 

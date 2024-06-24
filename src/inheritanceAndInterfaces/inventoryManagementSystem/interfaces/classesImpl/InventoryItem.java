@@ -9,8 +9,7 @@ public class InventoryItem extends AbstractItem {
     private int id;
     private double quantity;
 
-
-    public InventoryItem(int id, double quantity, Category category, double price) {
+    public InventoryItem(String category, double price, int id, double quantity) {
         super(category, price);
         this.id = id;
         this.quantity = quantity;
