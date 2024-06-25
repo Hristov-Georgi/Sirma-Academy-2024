@@ -1,5 +1,9 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
 
+/**
+ * This FragileItem class should be inherited from all classes that creates fragile objects.
+ */
+
 public class FragileItem extends InventoryItem {
 
     private double weight;

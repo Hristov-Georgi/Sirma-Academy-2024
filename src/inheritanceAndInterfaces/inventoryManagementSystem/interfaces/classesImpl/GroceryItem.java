@@ -5,6 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
+/**
+ * This class is used to create objects of groceries (food products).
+ * It overrides isExpired method that check if current product is expired.
+ * Expiration date is formatted to European (Bulgarian) most used data format, which is used in itemsData.txt file.
+ */
+
 public class GroceryItem extends InventoryItem {
     DateTimeFormatter EUROPEAN_DATE_FORMAT = new DateTimeFormatterBuilder()
             .appendValue(ChronoField.DAY_OF_MONTH, 2)

@@ -1,7 +1,6 @@
 package inheritanceAndInterfaces.inventoryManagementSystem;
 
 import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.Item;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.ElectronicItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.GroceryItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
@@ -20,11 +19,21 @@ public class InventoryApplication {
         List<InventoryItem> expiredProductsList = new ArrayList<>();
         Map<Integer, List<InventoryItem>> inventoryStorageMap = loadItems(wrongDataFormat, expiredProductsList);
 
-
+        // write inventoryStorageMap values into the itemsData.txt after finish work.
+        // sout wrongData in console
+        // sout expired products
 
 
         System.out.println();
     }
+
+    /**
+     * Method reads all data from resources.itemsData.txt and returns Map of valid data.
+     * Maps key is the product id, maps value is list of inventory items.
+     * If data is in invalid format then it is added in wrongDataFormat list.
+     * if grocery products have expired date then the expired product is added in expiredProductList and
+     * could be displayed to grocery workers for further handling.
+     */
 
     private static Map<Integer, List<InventoryItem>> loadItems(List<String> wrongDataFormat, List<InventoryItem> expiredProductsList) {
         Map<Integer, List<InventoryItem>> itemsMap = new HashMap<>();
@@ -91,6 +100,5 @@ public class InventoryApplication {
         return itemsMap;
 
     }
-
 
 }
