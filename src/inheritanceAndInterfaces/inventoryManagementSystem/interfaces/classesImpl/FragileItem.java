@@ -17,5 +17,8 @@ public class FragileItem extends InventoryItem {
         return weight;
     }
 
-
+    @Override
+    public boolean isBreakable() {
+        return true;
+    }
 }

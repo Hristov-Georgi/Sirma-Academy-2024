@@ -48,11 +48,6 @@ public abstract class AbstractItem implements Item, Breakable, Categorizable, Pe
 
     @Override
     public boolean isBreakable() {
-        String categoryName = this.category.name();
-
-        if (categoryName.equals("ELECTRONIC") || categoryName.equals("GLASS")) {
-            return true;
-        }
 
         return false;
 
