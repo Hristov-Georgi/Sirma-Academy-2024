@@ -1,5 +1,7 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -22,8 +24,8 @@ public class GroceryItem extends InventoryItem {
 
     private LocalDate expirationDate;
 
-    public LocalDate getExpirationDate() {
-        return expirationDate;
+    public String getExpirationDate() {
+        return this.expirationDate.format(EUROPEAN_DATE_FORMAT);
     }
 
     public GroceryItem(String category, double price, int id, double quantity, String expirationDate) {
@@ -40,6 +42,21 @@ public class GroceryItem extends InventoryItem {
 
         return false;
 
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("0.##", dfs);
+
+
+        return String.format("%s, %s, %d, %s, %s",
+                super.getCategory(),
+                df.format(super.getPrice()),
+                super.getId(),
+                df.format(super.getQuantity()),
+                this.getExpirationDate());
     }
 
 }
