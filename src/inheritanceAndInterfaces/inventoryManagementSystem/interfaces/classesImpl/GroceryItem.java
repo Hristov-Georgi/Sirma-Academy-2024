@@ -28,7 +28,7 @@ public class GroceryItem extends InventoryItem {
     @Override
     public boolean isExpired() {
 
-        if (isPerishable() && expirationDate.isAfter(LocalDate.now())) {
+        if (isPerishable() && expirationDate.isBefore(LocalDate.now())) {
             return true;
         }
 
