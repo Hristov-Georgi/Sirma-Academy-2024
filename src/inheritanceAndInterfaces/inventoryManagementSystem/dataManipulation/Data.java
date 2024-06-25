@@ -5,10 +5,7 @@ import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.GroceryItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,6 +84,35 @@ public class Data {
         }
 
         return itemsMap;
+
+    }
+
+    /**
+     * Method writes final inventory data when the program end execution.
+     * Data is stored in itemsData.txt file (same file where we read the initial item data).
+     * Method use Class toString method to write the result in file.
+     */
+
+    public static void writeItemsToFile(Map<Integer, List<InventoryItem>> inventoryStorageMap) {
+
+        File itemsData = new File("src/inheritanceAndInterfaces/inventoryManagementSystem/resources/itemsData.txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(itemsData))) {
+
+            for (Map.Entry<Integer, List<InventoryItem>> m : inventoryStorageMap.entrySet()) {
+
+                for (InventoryItem i : m.getValue()) {
+
+                    writer.write(i.toString());
+                    writer.newLine();
+
+                }
+
+            }
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 
