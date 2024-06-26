@@ -14,8 +14,6 @@ public interface Order {
 
     List<CartItem> getCartItems();
 
-    List<CartItem> categorizeCartItemsByName();
-
     void placeOrder();
 
 }

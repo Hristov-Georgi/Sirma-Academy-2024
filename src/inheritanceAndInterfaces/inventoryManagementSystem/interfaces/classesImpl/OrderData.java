@@ -67,24 +67,7 @@ public class OrderData implements Order {
 
             return this.itemsCart;
         }
-
-
-    }
-
-    @Override
-    public List<CartItem> categorizeCartItemsByName() {
-
-        if (this.itemsCart.isEmpty()) {
-
-            throw new NullPointerException("Your cart is empty.");
-
-        } else {
-
-            this.itemsCart.sort(Comparator.comparing(CartItem::getName));
-
-            return this.itemsCart;
-        }
-
+        
     }
 
     @Override
