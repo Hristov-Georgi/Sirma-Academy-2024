@@ -11,8 +11,8 @@ import java.text.DecimalFormatSymbols;
 
 public class ElectronicItem extends FragileItem{
 
-    public ElectronicItem(String category, double price, int id, double quantity, double weight) {
-        super(category, price, id, quantity, weight);
+    public ElectronicItem(String category, double price, String name, int id, double quantity, double weight) {
+        super(category, price, name, id, quantity, weight);
     }
 
     @Override

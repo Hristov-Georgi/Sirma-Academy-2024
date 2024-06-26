@@ -12,10 +12,16 @@ public abstract class AbstractItem implements Item, Breakable, Categorizable, Pe
     private Category category;
     private String details;
     private BigDecimal price;
+    private String name;
 
-    public AbstractItem(String category, double price) {
+    public AbstractItem(String category, double price, String name) {
         this.category = Category.valueOf(category.toUpperCase());
         this.setPrice(price);
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setDescription(String description) {

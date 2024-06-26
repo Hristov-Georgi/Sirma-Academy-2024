@@ -28,8 +28,8 @@ public class GroceryItem extends InventoryItem {
         return this.expirationDate.format(EUROPEAN_DATE_FORMAT);
     }
 
-    public GroceryItem(String category, double price, int id, double quantity, String expirationDate) {
-        super(category, price, id, quantity);
+    public GroceryItem(String category, double price, String name, int id, double quantity, String expirationDate) {
+        super(category, price, name, id, quantity);
         this.expirationDate = LocalDate.parse(expirationDate, EUROPEAN_DATE_FORMAT);
     }
 
