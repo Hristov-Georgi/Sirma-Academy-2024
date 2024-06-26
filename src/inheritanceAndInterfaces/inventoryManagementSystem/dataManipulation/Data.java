@@ -14,8 +14,8 @@ import java.util.Map;
 public class Data {
 
     /**
-     * Method reads all data from resources.itemsData.txt and returns Map of valid data.
-     * Maps key is the product id, maps value is list of inventory items.
+     * Method reads all data from resources.itemsData.txt and returns Map from valid data.
+     * Map key is the product id, map value is list of inventory items.
      * If data is in invalid format then it is added in wrongDataFormat list.
      * if grocery products have expired date then the expired product is added in expiredProductList and
      * could be displayed to grocery workers for further handling.
