@@ -2,11 +2,11 @@ package inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation;
 
 import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.ElectronicItem;
+import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.FragileItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.GroceryItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,61 +21,74 @@ public class Data {
      * could be displayed to grocery workers for further handling.
      */
 
-    public static Map<Integer, List<InventoryItem>> loadItems(List<String> wrongDataFormat, List<InventoryItem> expiredProductsList) {
-        Map<Integer, List<InventoryItem>> itemsMap = new HashMap<>();
+    public static Map<Integer, InventoryItem> loadItems(List<String> wrongDataFormat, List<InventoryItem> expiredProductsList) {
+        Map<Integer, InventoryItem> itemsMap = new HashMap<>();
 
         File itemsData = new File("src/inheritanceAndInterfaces/inventoryManagementSystem/resources/itemsData.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(itemsData))) {
 
-            String line = reader.readLine();
+            String currentReadLine = reader.readLine();
 
-            while (line != null) {
+            while (currentReadLine != null) {
 
-                String[] singleData = line.split(",\\s+");
+                String[] singleData = currentReadLine.split(",\\s+");
 
                 try {
                     String category = singleData[0];
                     double price = Double.parseDouble(singleData[1]);
                     int id = Integer.parseInt(singleData[2]);
+                    String name = singleData[3];
 
                     if (category.toUpperCase().equals(Category.GROCERY.name())) {
-                        double quantity = Double.parseDouble(singleData[3]);
-                        String expirationDate = singleData[4];
+                        double quantity = Double.parseDouble(singleData[4]);
+                        String expirationDate = singleData[5];
 
-                        InventoryItem groceryItem = new GroceryItem(category, price, id, quantity, expirationDate);
+                        InventoryItem groceryItem = new GroceryItem(category, price, name, id, quantity, expirationDate);
 
                         if (groceryItem.isExpired()) {
                             expiredProductsList.add(groceryItem);
                         } else {
-                            itemsMap.putIfAbsent(id, new ArrayList<>());
-                            itemsMap.get(id).add(groceryItem);
-                        }
 
+                            if (itemsMap.containsKey(id)) {
+                                double currentItemQuantity = itemsMap.get(id).getQuantity();
+
+                                itemsMap.get(id).setQuantity(quantity + currentItemQuantity);
+                            }
+
+                            itemsMap.putIfAbsent(id, groceryItem);
+
+                        }
 
                     } else if (category.toUpperCase().equals(Category.ELECTRONIC.name())) {
 
                         double quantity = Double.parseDouble(singleData[3]);
                         double weight = Double.parseDouble(singleData[4]);
 
-                        InventoryItem electronicItem = new ElectronicItem(category, price, id, quantity, weight);
+                        if (itemsMap.containsKey(id)) {
+                            double currentItemQuantity = itemsMap.get(id).getQuantity();
+                            double  currentItemWeight = ((FragileItem) itemsMap.get(id)).getWeight();
 
-                        itemsMap.putIfAbsent(id, new ArrayList<>());
-                        itemsMap.get(id).add(electronicItem);
+                            itemsMap.get(id).setQuantity(currentItemQuantity + quantity);
+                            ((FragileItem) itemsMap.get(id)).setWeight(currentItemWeight + weight);
+                        }
+
+                        itemsMap.putIfAbsent(id, new ElectronicItem(category, price, name, id, quantity, weight));
+
                     } else {
 
-                        wrongDataFormat.add(line);
+                        wrongDataFormat.add(currentReadLine);
 
                     }
                 } catch (Exception ex) {
 
-                    wrongDataFormat.add(line);
-                    line = reader.readLine();
+                    wrongDataFormat.add(currentReadLine);
+                    currentReadLine = reader.readLine();
                     continue;
 
                 }
 
-                line = reader.readLine();
+                currentReadLine = reader.readLine();
             }
 
 
@@ -93,20 +106,16 @@ public class Data {
      * Method use Class toString method to write the result in file.
      */
 
-    public static void writeItemsToFile(Map<Integer, List<InventoryItem>> inventoryStorageMap) {
+    public static void writeItemsToFile(Map<Integer, InventoryItem> inventoryStorageMap) {
 
         File itemsData = new File("src/inheritanceAndInterfaces/inventoryManagementSystem/resources/itemsData.txt");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(itemsData))) {
 
-            for (Map.Entry<Integer, List<InventoryItem>> m : inventoryStorageMap.entrySet()) {
+            for (Map.Entry<Integer, InventoryItem> m : inventoryStorageMap.entrySet()) {
 
-                for (InventoryItem i : m.getValue()) {
-
-                    writer.write(i.toString());
+                    writer.write(m.getValue().toString());
                     writer.newLine();
-
-                }
 
             }
 
