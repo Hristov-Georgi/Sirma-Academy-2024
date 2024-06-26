@@ -1,5 +1,7 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
 
+import inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation.FormatSeparators;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -17,9 +19,8 @@ public class ElectronicItem extends FragileItem{
 
     @Override
     public String toString() {
-        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-        dfs.setDecimalSeparator('.');
-        DecimalFormat df = new DecimalFormat("0.##", dfs);
+
+        DecimalFormat df = FormatSeparators.dotSeparatorTwoSignAfter();
 
         return String.format("%s, %s, %d, %s, %s",
                 super.getCategory(),

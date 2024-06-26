@@ -11,7 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Data {
+/**
+ * Provides static methods for reading (to load) initial data when program starts for first time.
+ * When program finish execution saves the final data into the same file.
+ */
+
+public class InitialData {
 
     /**
      * Method reads all data from resources.itemsData.txt and returns Map from valid data.
