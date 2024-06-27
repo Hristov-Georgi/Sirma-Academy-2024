@@ -52,9 +52,9 @@ public class ShoppingCartData implements ShoppingCart {
             BigDecimal totalPrice = currentItem.getPrice().multiply(BigDecimal.valueOf(requiredQuantity));
 
             CartItem item = new CartItem(currentItem.getId(),
-                                        totalPrice,
-                                        currentItem.getName(),
-                                        requiredQuantity);
+                    totalPrice,
+                    currentItem.getName(),
+                    requiredQuantity);
 
             this.shoppingCart.add(item);
 
@@ -79,7 +79,7 @@ public class ShoppingCartData implements ShoppingCart {
 
             return this.shoppingCart;
         }
-        
+
     }
 
     @Override
@@ -125,6 +125,7 @@ public class ShoppingCartData implements ShoppingCart {
 
     }
 
+
     @Override
     public void printCartItems() {
         System.out.println("Id | Total Price | Name | Quantity");
@@ -137,10 +138,21 @@ public class ShoppingCartData implements ShoppingCart {
         this.shoppingCart.clear();
     }
 
+    @Override
+    public BigDecimal getTotalCost() {
+        BigDecimal totalValue = new BigDecimal(0);
+
+        for (CartItem i : shoppingCart) {
+            totalValue = totalValue.add(i.getTotalPrice());
+        }
+
+        return totalValue;
+    }
+
     private long getOrderNumber() {
 
         Random rnd = new Random();
-        return rnd.nextLong(1);
+        return rnd.nextLong(1, Long.MAX_VALUE);
     }
 
 }

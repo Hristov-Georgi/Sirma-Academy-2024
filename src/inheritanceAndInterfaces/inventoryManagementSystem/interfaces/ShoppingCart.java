@@ -3,6 +3,7 @@ package inheritanceAndInterfaces.inventoryManagementSystem.interfaces;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.CartItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -19,5 +20,7 @@ public interface ShoppingCart {
     void printCartItems();
 
     void clearCart();
+
+    BigDecimal getTotalCost();
 
 }
