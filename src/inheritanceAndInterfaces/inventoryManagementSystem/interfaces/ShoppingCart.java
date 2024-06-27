@@ -6,7 +6,7 @@ import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl
 import java.util.List;
 import java.util.Map;
 
-public interface Order {
+public interface ShoppingCart {
 
     void removeItemFromCart(int id);
 

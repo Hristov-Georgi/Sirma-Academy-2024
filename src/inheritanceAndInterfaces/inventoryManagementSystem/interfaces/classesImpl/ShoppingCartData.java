@@ -1,6 +1,6 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
 
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.Order;
+import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.ShoppingCart;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class OrderData implements Order {
+public class ShoppingCartData implements ShoppingCart {
     private static final String ORDERS_DIRECTORY_PATH = "src/inheritanceAndInterfaces/inventoryManagementSystem/resources/orders/";
 
     private List<CartItem> itemsCart;
 
-    public OrderData() {
+    public ShoppingCartData() {
         this.itemsCart = new ArrayList<>();
     }
 
