@@ -40,16 +40,18 @@ public class InitialData {
                 String[] singleData = currentReadLine.split(",\\s+");
 
                 try {
-                    String category = singleData[0];
-                    double price = Double.parseDouble(singleData[1]);
-                    int id = Integer.parseInt(singleData[2]);
+                    int id = Integer.parseInt(singleData[0]);
+                    String category = singleData[1];
+                    double price = Double.parseDouble(singleData[2]);
                     String name = singleData[3];
+
+
 
                     if (category.toUpperCase().equals(Category.GROCERY.name())) {
                         double quantity = Double.parseDouble(singleData[4]);
                         String expirationDate = singleData[5];
 
-                        InventoryItem groceryItem = new GroceryItem(category, price, name, id, quantity, expirationDate);
+                        InventoryItem groceryItem = new GroceryItem(id, category, price, name,quantity, expirationDate);
 
                         if (groceryItem.isExpired()) {
                             expiredProductsList.add(groceryItem);
@@ -67,8 +69,8 @@ public class InitialData {
 
                     } else if (category.toUpperCase().equals(Category.ELECTRONIC.name())) {
 
-                        double quantity = Double.parseDouble(singleData[3]);
-                        double weight = Double.parseDouble(singleData[4]);
+                        double quantity = Double.parseDouble(singleData[4]);
+                        double weight = Double.parseDouble(singleData[5]);
 
                         if (itemsMap.containsKey(id)) {
                             double currentItemQuantity = itemsMap.get(id).getQuantity();
@@ -78,7 +80,7 @@ public class InitialData {
                             ((FragileItem) itemsMap.get(id)).setWeight(currentItemWeight + weight);
                         }
 
-                        itemsMap.putIfAbsent(id, new ElectronicItem(category, price, name, id, quantity, weight));
+                        itemsMap.putIfAbsent(id, new ElectronicItem(id, category, price, name, quantity, weight));
 
                     } else {
 
@@ -126,6 +128,36 @@ public class InitialData {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+
+    }
+
+
+
+    public static void printIndexPage(Map<Integer, InventoryItem> inventoryStorageMap) {
+        System.out.println();
+        System.out.printf("WELCOME!%nE-commerce console application!%n");
+        System.out.println();
+        System.out.println("Feel free to choose from our products list:");
+        System.out.println();
+        System.out.println("ID, Category, Price, Name, Quantity, Exp. date");
+        InitialData.listAllProducts(inventoryStorageMap);
+
+        System.out.println();
+        System.out.println("Menu:");
+        System.out.println("1. add id Quantity - type \"add\" command followed by product id number and product quantity to add product in shopping cart");
+        System.out.println("2. sort option - type \"sort\" followed by current options: name, id, category or price. Display sorted items.");
+        System.out.println("3. remove id - type \"remove\" followed by product id number to remove product from shopping cart");
+        System.out.println("4. cart - type \"cart\" to list all added products");
+        System.out.println("5. order - type \"order\" to set an order");
+        System.out.println("Type and enjoy :)");
+    }
+
+    private static void listAllProducts(Map<Integer, InventoryItem> products) {
+
+        for (Map.Entry<Integer, InventoryItem> i : products.entrySet()) {
+
+            System.out.println(i.getValue());
         }
 
     }

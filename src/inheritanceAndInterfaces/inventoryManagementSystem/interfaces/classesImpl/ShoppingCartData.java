@@ -35,6 +35,11 @@ public class ShoppingCartData implements ShoppingCart {
     public void addItemToCart(Map<Integer, InventoryItem> inventoryStorageMap, int id, double requiredQuantity) {
 
         InventoryItem currentItem = inventoryStorageMap.get(id);
+
+        if (currentItem == null) {
+            throw new NullPointerException("Invalid id number. Please check id and enter again.");
+        }
+
         double currentItemQuantity = currentItem.getQuantity();
 
         if (currentItemQuantity >= requiredQuantity && currentItemQuantity > 0) {

@@ -29,8 +29,8 @@ public class GroceryItem extends InventoryItem {
         return this.expirationDate.format(EUROPEAN_DATE_FORMAT);
     }
 
-    public GroceryItem(String category, double price, String name, int id, double quantity, String expirationDate) {
-        super(category, price, name, id, quantity);
+    public GroceryItem(int id, String category, double price, String name, double quantity, String expirationDate) {
+        super(id, category, price, name, quantity);
         this.expirationDate = LocalDate.parse(expirationDate, EUROPEAN_DATE_FORMAT);
     }
 
@@ -50,10 +50,11 @@ public class GroceryItem extends InventoryItem {
 
         DecimalFormat df = FormatSeparators.dotSeparatorTwoSignAfter();
 
-        return String.format("%s, %s, %d, %s, %s",
+        return String.format("%d, %s, %s, %s, %s, %s",
+                super.getId(),
                 super.getCategory(),
                 df.format(super.getPrice()),
-                super.getId(),
+                super.getName(),
                 df.format(super.getQuantity()),
                 this.getExpirationDate());
     }

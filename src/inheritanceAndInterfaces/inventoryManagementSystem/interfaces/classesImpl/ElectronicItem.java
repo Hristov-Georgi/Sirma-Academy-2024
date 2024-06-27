@@ -3,7 +3,6 @@ package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImp
 import inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation.FormatSeparators;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 
 /**
  * This class creates electronic objects.
@@ -13,8 +12,8 @@ import java.text.DecimalFormatSymbols;
 
 public class ElectronicItem extends FragileItem{
 
-    public ElectronicItem(String category, double price, String name, int id, double quantity, double weight) {
-        super(category, price, name, id, quantity, weight);
+    public ElectronicItem(int id, String category, double price, String name, double quantity, double weight) {
+        super(id, category, price, name, quantity, weight);
     }
 
     @Override
@@ -22,10 +21,11 @@ public class ElectronicItem extends FragileItem{
 
         DecimalFormat df = FormatSeparators.dotSeparatorTwoSignAfter();
 
-        return String.format("%s, %s, %d, %s, %s",
+        return String.format("%d, %s, %s, %s, %s",
+                super.getId(),
                 super.getCategory(),
                 df.format(super.getPrice()),
-                super.getId(),
+                super.getName(),
                 df.format(super.getQuantity()),
                 super.getWeight());
     }

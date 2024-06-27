@@ -3,13 +3,14 @@ package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImp
 import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 public class InventoryItem extends AbstractItem {
 
     private int id;
     private double quantity;
 
-    public InventoryItem(String category, double price, String name, int id, double quantity) {
+    public InventoryItem(int id, String category, double price, String name, double quantity) {
         super(category, price, name);
         this.id = id;
         this.quantity = quantity;
@@ -35,7 +36,6 @@ public class InventoryItem extends AbstractItem {
     public BigDecimal calculateValue() {
         return BigDecimal.ZERO;
     }
-
 
     @Override
     public boolean isExpired() {

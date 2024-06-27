@@ -8,8 +8,8 @@ public class FragileItem extends InventoryItem {
 
     private double weight;
 
-    public FragileItem(String category, double price, String name, int id, double quantity, double weight) {
-        super(category, price, name, id, quantity);
+    public FragileItem(int id, String category, double price, String name, double quantity, double weight) {
+        super(id, category, price, name, quantity);
         this.weight = weight;
     }
 
