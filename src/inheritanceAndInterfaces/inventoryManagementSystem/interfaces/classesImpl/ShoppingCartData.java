@@ -18,6 +18,10 @@ public class ShoppingCartData implements ShoppingCart {
         this.shoppingCart = new ArrayList<>();
     }
 
+    /**
+     * Removes and return the item from shopping cart by given id.
+     * Throws NullPointerException if cart does not contain item with given id.
+     */
     @Override
     public CartItem removeItemFromCart(int id) {
 
@@ -29,11 +33,16 @@ public class ShoppingCartData implements ShoppingCart {
             }
 
         }
-
         throw new NullPointerException("Cart does not contain item with id: " + id);
 
     }
 
+    /**
+     * Add new item to cart by id and quantity.
+     * If id is valid and quantity is available adds item to the cart, else throw NullPointerException.
+     * Updates available item quantities when product is added in shopping cart.
+     * Return item if successfully added to cart.
+     */
     @Override
     public CartItem addItemToCart(Map<Integer, InventoryItem> inventoryStorageMap, int id, double requiredQuantity) {
 
@@ -68,6 +77,10 @@ public class ShoppingCartData implements ShoppingCart {
 
     }
 
+    /**
+     * Return all items available in the shopping cart.
+     * Throws NullPointerException if cart is empty.
+     */
     @Override
     public List<CartItem> getCartItems() {
 
@@ -82,10 +95,13 @@ public class ShoppingCartData implements ShoppingCart {
 
     }
 
+    /**
+     * Save every order in new file and return order number if operation is successful.
+     * Throws NullPointerException if cart is empty.
+     * Throws IOException if order is not saved successfully.
+     */
     @Override
     public long placeOrder() {
-
-        // save current order in file. And every next orders in different files.
 
         if (!this.shoppingCart.isEmpty()) {
 
@@ -99,7 +115,6 @@ public class ShoppingCartData implements ShoppingCart {
                 placeOrder();
 
             }
-
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(order))) {
 
@@ -116,7 +131,6 @@ public class ShoppingCartData implements ShoppingCart {
 
             }
 
-
             return orderNumber;
 
         } else {
@@ -125,19 +139,27 @@ public class ShoppingCartData implements ShoppingCart {
 
     }
 
-
+    /**
+     * Print ordered items on console after successful placed order.
+     */
     @Override
-    public void printCartItems() {
+    public void printOrderedItems() {
         System.out.println("Id | Total Price | Name | Quantity");
         System.out.println("----------------------------------");
         this.shoppingCart.forEach(System.out::println);
     }
 
+    /**
+     * Clear all items from shopping cart.
+     */
     @Override
     public void clearCart() {
         this.shoppingCart.clear();
     }
 
+    /**
+     * Return order total cost.
+     */
     @Override
     public BigDecimal getTotalCost() {
         BigDecimal totalValue = new BigDecimal(0);
@@ -149,6 +171,9 @@ public class ShoppingCartData implements ShoppingCart {
         return totalValue;
     }
 
+    /**
+     * Return unique order number.
+     */
     private long getOrderNumber() {
 
         Random rnd = new Random();

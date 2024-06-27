@@ -17,7 +17,7 @@ public interface ShoppingCart {
 
     long placeOrder();
 
-    void printCartItems();
+    void printOrderedItems();
 
     void clearCart();
 

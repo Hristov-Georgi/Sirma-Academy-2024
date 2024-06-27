@@ -46,6 +46,10 @@ public class InventoryApplication {
 
                 switch (command[0]) {
 
+                    /*
+                     * Adds item by id and quantity to the shopping cart. For example: add 11111 5 and then print
+                     * if the item is added successfully or not. If not print why operation is not successful.
+                     */
                     case "add":
 
                         try {
@@ -71,6 +75,9 @@ public class InventoryApplication {
 
                         break;
 
+                        /*
+                        * Sort and displays available items. Sort can be executed by name, id, category or price.
+                         */
                     case "sort":
 
                         if (command[1].equals("name")) {
@@ -96,6 +103,11 @@ public class InventoryApplication {
 
                         break;
 
+                        /*
+                        * Remove item by id from shopping cart. For example: remove 11111
+                        * if operation is not successful print reason on console.
+                         */
+
                     case "remove":
                         try {
                             int idToRemove = Integer.parseInt(command[1]);
@@ -114,9 +126,13 @@ public class InventoryApplication {
 
                         break;
 
+                        /*
+                        * Print all items in the shopping cart.
+                         */
+
                     case "cart":
                         try {
-                            shoppingCart.printCartItems();
+                            shoppingCart.printOrderedItems();
 
                         } catch (NullPointerException ex) {
                             System.out.println(ex.getMessage());
@@ -124,11 +140,18 @@ public class InventoryApplication {
 
                         break;
 
+                        /*
+                        * Place new order. Return order number. Print ordered items and total cost.
+                        * Clears shopping cart if order is successful and write order details to text file named
+                        * with order number.
+                         */
+
                     case "order":
 
                         try {
                             System.out.println("Order: " + shoppingCart.placeOrder() + " placed successfully");
-                            shoppingCart.printCartItems();
+                            shoppingCart.printOrderedItems();
+                            System.out.println("Total cost: " + shoppingCart.getTotalCost());
                             shoppingCart.clearCart();
 
                             InitialData.writeItemsToFile(inventoryStorageMap);
@@ -138,6 +161,10 @@ public class InventoryApplication {
                         }
 
                         break;
+
+                        /*
+                        * Print current message if incorrect command is entered.
+                         */
 
                     default:
 

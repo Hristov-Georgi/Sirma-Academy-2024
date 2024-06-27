@@ -33,7 +33,7 @@ public class InventoryItem extends AbstractItem {
 
     @Override
     public BigDecimal calculateValue() {
-        return BigDecimal.ZERO;
+        return BigDecimal.valueOf(this.quantity).multiply(super.getPrice());
     }
 
     @Override
