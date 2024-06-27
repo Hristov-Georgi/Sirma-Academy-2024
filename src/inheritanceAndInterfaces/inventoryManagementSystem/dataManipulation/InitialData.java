@@ -133,7 +133,8 @@ public class InitialData {
         System.out.println();
         System.out.println("Feel free to choose from our products list:");
         System.out.println();
-        System.out.println("ID, Category, Price, Name, Quantity, Exp. date");
+        System.out.println("ID | Category | Price | Name | Quantity | Exp. date");
+        System.out.println("---------------------------------------------------");
         InitialData.listAllProducts(inventoryStorageMap);
 
         System.out.println();

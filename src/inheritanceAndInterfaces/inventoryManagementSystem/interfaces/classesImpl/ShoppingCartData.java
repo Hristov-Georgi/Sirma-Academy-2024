@@ -62,7 +62,7 @@ public class ShoppingCartData implements ShoppingCart {
 
         } else {
 
-            throw new IllegalArgumentException("Insufficient item quantity");
+            throw new NumberFormatException("Insufficient item quantity");
 
         }
 

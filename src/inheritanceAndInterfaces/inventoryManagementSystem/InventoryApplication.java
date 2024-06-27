@@ -56,87 +56,97 @@ public class InventoryApplication {
                                     shoppingCart.addItemToCart(inventoryStorageMap, id, quantity) +
                                     "\" added to shopping cart.");
 
-                        } catch (ArrayIndexOutOfBoundsException ex){
+
+                        } catch (ArrayIndexOutOfBoundsException ex) {
                             System.out.println("Enter product quantity.");
+
                         } catch (NumberFormatException ex) {
+                            System.out.println(ex.getMessage());
                             System.out.println("Enter valid id or product quantity. Check products list.");
 
                         } catch (NullPointerException e) {
                             System.out.println(e.getMessage());
+
                         }
 
-                        break;
-
-                    case "sort":
-
-                        if (command[1].equals("name")) {
-
-                            InitialData.sortByName(inventoryStorageMap);
-
-                        } else if (command[1].equals("id")) {
-
-                            InitialData.sortById(inventoryStorageMap);
-
-                        } else if (command[1].equals("category")) {
-
-                            InitialData.sortByCategory(inventoryStorageMap);
-
-                        } else if (command[1].equals("price")) {
-
-                            InitialData.sortByPrice(inventoryStorageMap);
-
-                        } else {
-
-                            System.out.println("Invalid sort command. Please check your input and make sure that every word is free space separated. See Menu for reference.");
-                        }
-
-                        break;
-
-                    case "remove":
-                        try {
-                            int idToRemove = Integer.parseInt(command[1]);
-
-                            System.out.println("Item: \"" +
-                                    shoppingCart.removeItemFromCart(idToRemove) +
-                                    "\" was removed from shopping cart.");
-
-                        } catch (NullPointerException ex) {
-                            System.out.println("Enter valid id number. Id should be five digits long.");
-
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Enter valid id number. Id should be five digits long.");
                             break;
+
+                            case "sort":
+
+                                if (command[1].equals("name")) {
+
+                                    InitialData.sortByName(inventoryStorageMap);
+
+                                } else if (command[1].equals("id")) {
+
+                                    InitialData.sortById(inventoryStorageMap);
+
+                                } else if (command[1].equals("category")) {
+
+                                    InitialData.sortByCategory(inventoryStorageMap);
+
+                                } else if (command[1].equals("price")) {
+
+                                    InitialData.sortByPrice(inventoryStorageMap);
+
+                                } else {
+
+                                    System.out.println("Invalid sort command. Please check your input and make sure that every word is free space separated. See Menu for reference.");
+                                }
+
+                                break;
+
+                            case "remove":
+                                try {
+                                    int idToRemove = Integer.parseInt(command[1]);
+
+                                    System.out.println("Item: \"" +
+                                            shoppingCart.removeItemFromCart(idToRemove) +
+                                            "\" was removed from shopping cart.");
+
+                                } catch (NullPointerException ex) {
+                                    System.out.println("Enter valid id number. Id should be five digits long.");
+
+                                } catch (NumberFormatException ex) {
+                                    System.out.println("Enter valid id number. Id should be five digits long.");
+                                    break;
+                                }
+
+                                break;
+
+                            case "cart":
+                                try {
+                                    System.out.println("Id | Total Price | Name | Quantity");
+                                    System.out.println("----------------------------------");
+                                    shoppingCart.getCartItems().forEach(System.out::println);
+
+                                } catch (NullPointerException ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+
+                                break;
+
+                            case "order":
+
+
+                                InitialData.writeItemsToFile(inventoryStorageMap);
+                                break;
+
+                            default:
+
+                                System.out.println("Incorrect command! Please check your input and make sure that every word is separated by free space.");
+                                break;
+
                         }
 
-                        break;
 
-                    case "cart":
-
-
-
-                        break;
-
-                    case "order":
-
-
-                        InitialData.writeItemsToFile(inventoryStorageMap);
-                        break;
-
-                    default:
-
-                        System.out.println("Incorrect command! Please check your input and make sure that every word is separated by free space.");
-                        break;
-
+                        input = reader.readLine();
                 }
 
 
-                input = reader.readLine();
+            } catch(IOException ex){
+
             }
-
-
-        } catch (IOException ex) {
-
         }
-    }
 
-}
+    }
