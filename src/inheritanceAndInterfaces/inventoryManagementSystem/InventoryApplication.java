@@ -34,14 +34,13 @@ public class InventoryApplication {
 
         InitialData.printIndexPage(inventoryStorageMap);
 
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
             ShoppingCart shoppingCart = new ShoppingCartData();
 
-            String input = reader.readLine();
+            String input = reader.readLine().trim();
 
-            while (input != null && !input.equals("exit")) {
+            while (!input.equals("exit")) {
 
                 String[] command = input.split("\\s+");
 
@@ -50,13 +49,17 @@ public class InventoryApplication {
                     case "add":
 
                         try {
-                            int idToRemove = Integer.parseInt(command[1]);
+                            int id = Integer.parseInt(command[1]);
                             double quantity = Double.parseDouble(command[2]);
 
-                            shoppingCart.addItemToCart(inventoryStorageMap, idToRemove, quantity);
+                            System.out.println("Item: \"" +
+                                    shoppingCart.addItemToCart(inventoryStorageMap, id, quantity) +
+                                    "\" added to shopping cart.");
 
+                        } catch (ArrayIndexOutOfBoundsException ex){
+                            System.out.println("Enter product quantity.");
                         } catch (NumberFormatException ex) {
-                            System.out.println("Enter valid id number. Id should be five digits long.");
+                            System.out.println("Enter valid id or product quantity. Check products list.");
 
                         } catch (NullPointerException e) {
                             System.out.println(e.getMessage());
@@ -68,30 +71,47 @@ public class InventoryApplication {
 
                         if (command[1].equals("name")) {
 
+                            InitialData.sortByName(inventoryStorageMap);
+
                         } else if (command[1].equals("id")) {
+
+                            InitialData.sortById(inventoryStorageMap);
 
                         } else if (command[1].equals("category")) {
 
+                            InitialData.sortByCategory(inventoryStorageMap);
 
                         } else if (command[1].equals("price")) {
 
+                            InitialData.sortByPrice(inventoryStorageMap);
+
+                        } else {
+
+                            System.out.println("Invalid sort command. Please check your input and make sure that every word is free space separated. See Menu for reference.");
                         }
 
-                        continue;
+                        break;
 
                     case "remove":
                         try {
                             int idToRemove = Integer.parseInt(command[1]);
 
+                            System.out.println("Item: \"" +
+                                    shoppingCart.removeItemFromCart(idToRemove) +
+                                    "\" was removed from shopping cart.");
+
+                        } catch (NullPointerException ex) {
+                            System.out.println("Enter valid id number. Id should be five digits long.");
 
                         } catch (NumberFormatException ex) {
                             System.out.println("Enter valid id number. Id should be five digits long.");
-                            continue;
+                            break;
                         }
 
                         break;
 
                     case "cart":
+
 
 
                         break;
@@ -104,7 +124,7 @@ public class InventoryApplication {
 
                     default:
 
-                        System.out.println("Incorrect command!. Please check your input and make sure that every word is free space separated.");
+                        System.out.println("Incorrect command! Please check your input and make sure that every word is separated by free space.");
                         break;
 
                 }
@@ -117,8 +137,6 @@ public class InventoryApplication {
         } catch (IOException ex) {
 
         }
-
     }
-
 
 }

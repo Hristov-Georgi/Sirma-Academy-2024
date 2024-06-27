@@ -1,9 +1,8 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
 
-import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
 
 import java.math.BigDecimal;
-import java.util.Map;
+
 
 public class InventoryItem extends AbstractItem {
 
@@ -41,7 +40,5 @@ public class InventoryItem extends AbstractItem {
     public boolean isExpired() {
         return false;
     }
-
-
 
 }

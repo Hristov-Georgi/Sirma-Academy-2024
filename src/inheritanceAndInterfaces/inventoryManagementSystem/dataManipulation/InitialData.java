@@ -1,10 +1,7 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation;
 
 import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.ElectronicItem;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.FragileItem;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.GroceryItem;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
+import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.*;
 
 import java.io.*;
 import java.util.*;
@@ -130,8 +127,6 @@ public class InitialData {
 
     }
 
-
-
     public static void printIndexPage(Map<Integer, InventoryItem> inventoryStorageMap) {
         System.out.println();
         System.out.printf("WELCOME!%nE-commerce console application!%n");
@@ -170,6 +165,26 @@ public class InitialData {
                 .entrySet()
                 .stream()
                 .sorted(Comparator.comparing(i -> i.getValue().getName().toLowerCase()))
+                .forEach(i -> System.out.println(i.getValue()));
+
+    }
+
+    public static void sortByCategory(Map<Integer, InventoryItem> inventoryStorageMap) {
+
+        inventoryStorageMap
+                .entrySet()
+                .stream()
+                .sorted(Comparator.comparing(i -> i.getValue().getCategory().toLowerCase()))
+                .forEach(i -> System.out.println(i.getValue()));
+
+    }
+
+    public static void sortByPrice(Map<Integer, InventoryItem> inventoryStorageMap) {
+
+        inventoryStorageMap
+                .entrySet()
+                .stream()
+                .sorted(Comparator.comparing(i -> i.getValue().getPrice()))
                 .forEach(i -> System.out.println(i.getValue()));
 
     }

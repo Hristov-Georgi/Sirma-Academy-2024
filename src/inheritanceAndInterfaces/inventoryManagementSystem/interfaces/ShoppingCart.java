@@ -8,9 +8,9 @@ import java.util.Map;
 
 public interface ShoppingCart {
 
-    void removeItemFromCart(int id);
+    CartItem removeItemFromCart(int id);
 
-    void addItemToCart(Map<Integer, InventoryItem> inventoryStorageMap, int id, double requiredQuantity);
+    CartItem addItemToCart(Map<Integer, InventoryItem> inventoryStorageMap, int id, double requiredQuantity);
 
     List<CartItem> getCartItems();
 

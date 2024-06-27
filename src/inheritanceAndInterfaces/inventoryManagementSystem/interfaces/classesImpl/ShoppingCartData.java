@@ -19,20 +19,23 @@ public class ShoppingCartData implements ShoppingCart {
     }
 
     @Override
-    public void removeItemFromCart(int id) {
+    public CartItem removeItemFromCart(int id) {
 
         for (CartItem i : this.itemsCart) {
 
             if (i.getId() == id) {
                 itemsCart.remove(i);
+                return i;
             }
 
         }
 
+        throw new NullPointerException("Cart does not contain item with id: " + id);
+
     }
 
     @Override
-    public void addItemToCart(Map<Integer, InventoryItem> inventoryStorageMap, int id, double requiredQuantity) {
+    public CartItem addItemToCart(Map<Integer, InventoryItem> inventoryStorageMap, int id, double requiredQuantity) {
 
         InventoryItem currentItem = inventoryStorageMap.get(id);
 
@@ -43,16 +46,20 @@ public class ShoppingCartData implements ShoppingCart {
         double currentItemQuantity = currentItem.getQuantity();
 
         if (currentItemQuantity >= requiredQuantity && currentItemQuantity > 0) {
-            currentItem.setQuantity(requiredQuantity);
 
             inventoryStorageMap.get(id).setQuantity(currentItemQuantity - requiredQuantity);
 
             BigDecimal totalPrice = currentItem.getPrice().multiply(BigDecimal.valueOf(requiredQuantity));
 
-            itemsCart.add(new CartItem(currentItem.getId(),
+            CartItem item = new CartItem(currentItem.getId(),
                                         totalPrice,
                                         currentItem.getName(),
-                                        currentItem.getQuantity()));
+                                        requiredQuantity);
+
+            this.itemsCart.add(item);
+
+            return item;
+
         } else {
 
             throw new IllegalArgumentException("Insufficient item quantity");
