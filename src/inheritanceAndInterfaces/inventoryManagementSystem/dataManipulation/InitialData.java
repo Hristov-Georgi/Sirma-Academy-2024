@@ -7,9 +7,7 @@ import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl
 import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Provides static methods for reading (to load) initial data when program starts for first time.
@@ -151,6 +149,29 @@ public class InitialData {
         System.out.println("4. cart - type \"cart\" to list all added products");
         System.out.println("5. order - type \"order\" to set an order");
         System.out.println("Type and enjoy :)");
+    }
+
+    public static void sortById(Map<Integer, InventoryItem> inventoryStorageMap) {
+        List<Integer> keys = new ArrayList<>();
+
+        for (Map.Entry<Integer, InventoryItem> i : inventoryStorageMap.entrySet()) {
+            keys.add(i.getKey());
+        }
+
+        Collections.sort(keys);
+
+        keys.forEach(i -> System.out.println(inventoryStorageMap.get(i)));
+
+    }
+
+    public static void sortByName(Map<Integer, InventoryItem> inventoryStorageMap) {
+
+        inventoryStorageMap
+                .entrySet()
+                .stream()
+                .sorted(Comparator.comparing(i -> i.getValue().getName().toLowerCase()))
+                .forEach(i -> System.out.println(i.getValue()));
+
     }
 
     private static void listAllProducts(Map<Integer, InventoryItem> products) {
