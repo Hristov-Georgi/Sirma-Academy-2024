@@ -12,19 +12,19 @@ import java.util.*;
 public class ShoppingCartData implements ShoppingCart {
     private static final String ORDERS_DIRECTORY_PATH = "src/inheritanceAndInterfaces/inventoryManagementSystem/resources/orders/";
 
-    private List<CartItem> itemsCart;
+    private List<CartItem> shoppingCart;
 
     public ShoppingCartData() {
-        this.itemsCart = new ArrayList<>();
+        this.shoppingCart = new ArrayList<>();
     }
 
     @Override
     public CartItem removeItemFromCart(int id) {
 
-        for (CartItem i : this.itemsCart) {
+        for (CartItem i : this.shoppingCart) {
 
             if (i.getId() == id) {
-                itemsCart.remove(i);
+                shoppingCart.remove(i);
                 return i;
             }
 
@@ -56,7 +56,7 @@ public class ShoppingCartData implements ShoppingCart {
                                         currentItem.getName(),
                                         requiredQuantity);
 
-            this.itemsCart.add(item);
+            this.shoppingCart.add(item);
 
             return item;
 
@@ -71,53 +71,76 @@ public class ShoppingCartData implements ShoppingCart {
     @Override
     public List<CartItem> getCartItems() {
 
-        if (this.itemsCart.isEmpty()) {
+        if (this.shoppingCart.isEmpty()) {
 
             throw new NullPointerException("Your cart is empty.");
 
         } else {
 
-            return this.itemsCart;
+            return this.shoppingCart;
         }
         
     }
 
     @Override
-    public void placeOrder() {
+    public long placeOrder() {
 
         // save current order in file. And every next orders in different files.
 
-        File order = getNewOrderFile();
+        if (!this.shoppingCart.isEmpty()) {
 
-        if (order.exists()) {
-            order = getNewOrderFile();
-        }
+            long orderNumber = getOrderNumber();
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(order))) {
+            String path = ORDERS_DIRECTORY_PATH + orderNumber + ".txt";
 
-            for (CartItem item : this.itemsCart) {
+            File order = new File(path);
 
-                writer.write(item.toString());
-                writer.newLine();
+            if (order.exists()) {
+                placeOrder();
 
             }
 
-        } catch (IOException ex) {
 
-            System.out.println("Order unsuccessful. Please contact to customer service center.");
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(order))) {
 
+                for (CartItem item : this.shoppingCart) {
+                    writer.write("Id | Total Price | Name | Quantity");
+                    writer.write("----------------------------------");
+                    writer.write(item.toString());
+                    writer.newLine();
+                }
+
+            } catch (IOException ex) {
+
+                System.out.println("Order unsuccessful. Please contact to customer service center.");
+
+            }
+
+
+            return orderNumber;
+
+        } else {
+            throw new NullPointerException("Your shopping cart is empty. Add products to make an order.");
         }
 
     }
 
-    private File getNewOrderFile() {
+    @Override
+    public void printCartItems() {
+        System.out.println("Id | Total Price | Name | Quantity");
+        System.out.println("----------------------------------");
+        this.shoppingCart.forEach(System.out::println);
+    }
+
+    @Override
+    public void clearCart() {
+        this.shoppingCart.clear();
+    }
+
+    private long getOrderNumber() {
 
         Random rnd = new Random();
-        long orderNumber = rnd.nextLong();
-
-        String path = ORDERS_DIRECTORY_PATH + orderNumber + ".txt";
-
-        return new File(path);
+        return rnd.nextLong(1);
     }
 
 }

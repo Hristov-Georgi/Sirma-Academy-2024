@@ -14,6 +14,10 @@ public interface ShoppingCart {
 
     List<CartItem> getCartItems();
 
-    void placeOrder();
+    long placeOrder();
+
+    void printCartItems();
+
+    void clearCart();
 
 }
