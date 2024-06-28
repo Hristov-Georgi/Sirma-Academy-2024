@@ -13,6 +13,7 @@ public class ShoppingCartData implements ShoppingCart {
     private static final String ORDERS_DIRECTORY_PATH = "src/inheritanceAndInterfaces/inventoryManagementSystem/resources/orders/";
 
     private List<CartItem> shoppingCart;
+    private PaymentProcessor paymentProcessor;
 
     public ShoppingCartData() {
         this.shoppingCart = new ArrayList<>();
@@ -104,6 +105,8 @@ public class ShoppingCartData implements ShoppingCart {
     public long placeOrder() {
 
         if (!this.shoppingCart.isEmpty()) {
+
+            // PaymentProcessor implementation;
 
             long orderNumber = getOrderNumber();
 
