@@ -118,9 +118,12 @@ public class ShoppingCartData implements ShoppingCart {
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(order))) {
 
+                writer.write("Id | Total Price | Name | Quantity");
+                writer.newLine();
+                writer.write("----------------------------------");
+                writer.newLine();
+
                 for (CartItem item : this.shoppingCart) {
-                    writer.write("Id | Total Price | Name | Quantity");
-                    writer.write("----------------------------------");
                     writer.write(item.toString());
                     writer.newLine();
                 }
