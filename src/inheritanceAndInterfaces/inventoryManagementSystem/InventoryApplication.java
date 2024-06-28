@@ -1,13 +1,14 @@
 package inheritanceAndInterfaces.inventoryManagementSystem;
 
+import inheritanceAndInterfaces.inventoryManagementSystem.enums.CardType;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.Card;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.CardClass;
 import inheritanceAndInterfaces.inventoryManagementSystem.service.initialLoad.InitialData;
 import inheritanceAndInterfaces.inventoryManagementSystem.service.ShoppingCart;
 import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.InventoryItem;
 import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.ShoppingCartData;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,8 @@ public class InventoryApplication {
 
         InitialData.printIndexPage(inventoryStorageMap);
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+             PrintWriter writer = new PrintWriter(System.out)) {
 
             ShoppingCart shoppingCart = new ShoppingCartData();
 
@@ -148,8 +150,42 @@ public class InventoryApplication {
 
                     case "order":
 
+                        Card card = null;
+
+                        writer.println("Enter card type: VISA or MASTERCARD.");
+                        writer.println("Enter first and last name from card.");
+                        writer.println("Enter card number without space.");
+                        writer.println("Enter card security code.");
+                        writer.println("All data should be on new line in the given order!");
+                        writer.flush();
+
+                        boolean isTrue = true;
+                        while (isTrue) {
+
+                            String cardType = reader.readLine();
+                            String names = reader.readLine();
+                            String cardNumber = reader.readLine();
+                            String securityCode = reader.readLine();
+
+                            if (cardType.toUpperCase().equals(CardType.VISA.name()) ||
+                                    cardType.toUpperCase().equals(CardType.MASTERCARD.name())) {
+
+                                try {
+
+                                    card = new CardClass(names, cardType, cardNumber, securityCode);
+                                    isTrue = false;
+
+                                } catch (IllegalArgumentException ex) {
+                                    System.out.println("Invalid card details. Please check and enter again.");
+                                    System.out.println(ex.getMessage());
+                                }
+
+                            }
+
+                        }
+
                         try {
-                            System.out.println("Order: " + shoppingCart.placeOrder() + " placed successfully");
+                            System.out.println("Order: " + shoppingCart.placeOrder(card) + " placed successfully");
                             shoppingCart.printOrderedItems();
                             System.out.println("Total cost: " + shoppingCart.getTotalCost());
                             shoppingCart.clearCart();

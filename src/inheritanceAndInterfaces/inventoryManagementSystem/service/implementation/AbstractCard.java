@@ -7,11 +7,11 @@ public class AbstractCard implements Card {
 
     private final String cardHolderNames;
     private final CardType cardType;
-    private final int cardNumber;
+    private final long cardNumber;
     private final int securityCode;
 
-    public AbstractCard(String firstName, String lastName, String cardType, String cardNumber, String securityCode) {
-        this.cardHolderNames = setCardHolderName(firstName, lastName);
+    public AbstractCard(String names, String cardType, String cardNumber, String securityCode) {
+        this.cardHolderNames = setCardHolderName(names);
         this.cardType = setCardType(cardType);
         this.cardNumber = setCardNumber(cardNumber);
         this.securityCode = setCardSecurityCode(securityCode);
@@ -19,12 +19,19 @@ public class AbstractCard implements Card {
 
 
     @Override
-    public String setCardHolderName(String firstName, String lastName) {
+    public String setCardHolderName(String names) {
 
-        if (!firstName.isBlank() && !lastName.isBlank()) {
-            return String.join(" ", firstName, lastName);
+        String[] firstLastName = names.split("\\s+");
+
+        if (!firstLastName[0].isBlank() ||
+            !firstLastName[1].isBlank() ||
+            firstLastName[0].length() > 1 ||
+            firstLastName[1].length() > 1) {
+
+            return names;
+
         } else {
-            throw new IllegalArgumentException("Invalid transaction!");
+            throw new IllegalArgumentException("Invalid names!");
         }
 
     }
@@ -38,18 +45,18 @@ public class AbstractCard implements Card {
         } else if (typeToUpperCase.equals(CardType.MASTERCARD.name())) {
             return CardType.MASTERCARD;
         } else {
-            throw new IllegalArgumentException("Invalid transaction!");
+            throw new IllegalArgumentException("Invalid card type!");
         }
     }
 
     @Override
-    public int setCardNumber(String cardNumber) {
+    public long setCardNumber(String cardNumber) {
 
         if (cardNumber.length() == 16) {
-            return Integer.parseInt(cardNumber);
+            return Long.parseLong(cardNumber);
 
         } else {
-            throw new IllegalArgumentException("Invalid transaction!");
+            throw new IllegalArgumentException("Invalid card number!");
         }
 
     }
@@ -60,7 +67,7 @@ public class AbstractCard implements Card {
         if (securityCode.length() == 3) {
             return Integer.parseInt(securityCode);
         } else {
-            throw new IllegalArgumentException("Invalid transaction!");
+            throw new IllegalArgumentException("Invalid security code!");
         }
 
     }

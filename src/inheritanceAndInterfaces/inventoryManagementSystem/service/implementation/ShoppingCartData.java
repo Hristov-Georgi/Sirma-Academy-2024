@@ -1,11 +1,10 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
+import inheritanceAndInterfaces.inventoryManagementSystem.enums.CardType;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.Card;
 import inheritanceAndInterfaces.inventoryManagementSystem.service.ShoppingCart;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -102,11 +101,9 @@ public class ShoppingCartData implements ShoppingCart {
      * Throws IOException if order is not saved successfully.
      */
     @Override
-    public long placeOrder() {
+    public long placeOrder(Card card) {
 
         if (!this.shoppingCart.isEmpty()) {
-
-            // PaymentProcessor implementation;
 
             long orderNumber = getOrderNumber();
 
@@ -115,26 +112,35 @@ public class ShoppingCartData implements ShoppingCart {
             File order = new File(path);
 
             if (order.exists()) {
-                placeOrder();
+                placeOrder(card);
 
             }
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(order))) {
+            this.paymentProcessor = new PaymentProcessor(orderNumber, getTotalCost(), card);
 
-                writer.write("Id | Total Price | Name | Quantity");
-                writer.newLine();
-                writer.write("----------------------------------");
-                writer.newLine();
+            if (this.paymentProcessor.validatePayment()) {
 
-                for (CartItem item : this.shoppingCart) {
-                    writer.write(item.toString());
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(order))) {
+
+                    writer.write("Payment successful!");
+                    writer.write("Id | Total Price | Name | Quantity");
                     writer.newLine();
+                    writer.write("----------------------------------");
+                    writer.newLine();
+
+                    for (CartItem item : this.shoppingCart) {
+                        writer.write(item.toString());
+                        writer.newLine();
+                    }
+
+                } catch (IOException ex) {
+
+                    System.out.println("Order unsuccessful. Please contact to customer service center.");
+
                 }
 
-            } catch (IOException ex) {
-
-                System.out.println("Order unsuccessful. Please contact to customer service center.");
-
+            } else {
+                throw new NullPointerException("Insufficient amount in card.");
             }
 
             return orderNumber;

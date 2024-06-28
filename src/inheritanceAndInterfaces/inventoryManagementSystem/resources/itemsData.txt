@@ -1,9 +1,6 @@
-11111, GROCERY, 1.22, waffle, 13, 11.08.2024
+11111, GROCERY, 1.22, waffle, 12, 11.08.2024
 11112, GROCERY, 5.23, banana, 40, 12.12.2025
 11113, GROCERY, 10.54, kiwi, 150, 23.02.2027
-22221, electronic, 9, smartphones, 200, 100
-22222, electronic, 100, TV, 23, 230
-22223, electronic, 454.45, refrigerator, 10, 500
-11113, grocery, 14.43, 50, 25.06.2029
-food, 0.33, 11114, 30, 30.07.2026
-grocery, 5.23, 11112, 40,
+22221, ELECTRONIC, 9, smartphones, 200
+22222, ELECTRONIC, 100, TV, 23
+22223, ELECTRONIC, 454.45, refrigerator, 10

@@ -15,12 +15,13 @@ public interface ShoppingCart {
 
     List<CartItem> getCartItems();
 
-    long placeOrder();
+    long placeOrder(Card card);
 
     void printOrderedItems();
 
     void clearCart();
 
     BigDecimal getTotalCost();
+
 
 }
