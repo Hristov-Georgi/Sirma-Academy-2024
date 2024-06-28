@@ -3,6 +3,11 @@ package inheritanceAndInterfaces.inventoryManagementSystem.service.implementatio
 import inheritanceAndInterfaces.inventoryManagementSystem.enums.CardType;
 import inheritanceAndInterfaces.inventoryManagementSystem.service.Card;
 
+/**
+ * Creates card object to provide orders payment.
+ * Validate input data upon card creation.
+ */
+
 public class AbstractCard implements Card {
 
     private final String cardHolderNames;

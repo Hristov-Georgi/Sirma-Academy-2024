@@ -143,6 +143,7 @@ public class InventoryApplication {
                         break;
 
                         /*
+                        * Get and validate card details needed for payment process.
                         * Place new order. Return order number. Print ordered items and total cost.
                         * Clears shopping cart if order is successful and write order details to text file named
                         * with order number.

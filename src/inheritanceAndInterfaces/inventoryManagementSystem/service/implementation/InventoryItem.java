@@ -1,8 +1,10 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
-
 import java.math.BigDecimal;
 
+/**
+ * Provides common method implementation for it's subclasses.
+ */
 
 public class InventoryItem extends AbstractItem {
 

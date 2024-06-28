@@ -1,10 +1,12 @@
 package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
 import inheritanceAndInterfaces.inventoryManagementSystem.configuration.FormatSeparators;
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
+/**
+ * This class is used when add items in the cart. Creates object with necessary variables needed to make an order.
+ */
 public class CartItem {
 
     private int id;

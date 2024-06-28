@@ -4,6 +4,10 @@ import inheritanceAndInterfaces.inventoryManagementSystem.service.Card;
 
 import java.math.BigDecimal;
 
+/**
+ * Validates if payment is eligible or not.
+ */
+
 public class PaymentProcessor {
 
     private long orderNumber;
@@ -15,6 +19,10 @@ public class PaymentProcessor {
         this.orderPrice = orderPrice;
         this.card = card;
     }
+
+    /**
+     * Return true if payment is eligible otherwise return false.
+     */
 
     public boolean validatePayment(){
 

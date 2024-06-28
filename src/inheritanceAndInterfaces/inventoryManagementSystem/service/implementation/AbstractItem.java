@@ -5,6 +5,9 @@ import inheritanceAndInterfaces.inventoryManagementSystem.service.*;
 
 import java.math.BigDecimal;
 
+/**
+ * Abstract class that provides common items functionality.
+ */
 
 public abstract class AbstractItem implements Item, Breakable, Categorizable, Perishable, Sellable {
 
