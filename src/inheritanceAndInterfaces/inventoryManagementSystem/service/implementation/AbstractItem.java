@@ -1,7 +1,7 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
+package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
 import inheritanceAndInterfaces.inventoryManagementSystem.enums.Category;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.*;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.*;
 
 import java.math.BigDecimal;
 

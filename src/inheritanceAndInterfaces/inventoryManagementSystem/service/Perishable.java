@@ -1,4 +1,4 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces;
+package inheritanceAndInterfaces.inventoryManagementSystem.service;
 
 public interface Perishable {
 

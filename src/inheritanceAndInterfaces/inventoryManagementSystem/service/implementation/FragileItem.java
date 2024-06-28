@@ -1,4 +1,4 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
+package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
 /**
  * This FragileItem class should be inherited from all classes that creates fragile objects.

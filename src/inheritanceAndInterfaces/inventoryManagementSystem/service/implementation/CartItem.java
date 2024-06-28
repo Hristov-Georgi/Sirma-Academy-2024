@@ -1,6 +1,6 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
+package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
-import inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation.FormatSeparators;
+import inheritanceAndInterfaces.inventoryManagementSystem.configuration.FormatSeparators;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

@@ -1,4 +1,4 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
+package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation;
+package inheritanceAndInterfaces.inventoryManagementSystem.configuration;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

@@ -1,7 +1,7 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces;
+package inheritanceAndInterfaces.inventoryManagementSystem.service;
 
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.CartItem;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.CartItem;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.InventoryItem;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,9 +1,9 @@
 package inheritanceAndInterfaces.inventoryManagementSystem;
 
-import inheritanceAndInterfaces.inventoryManagementSystem.dataManipulation.InitialData;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.ShoppingCart;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.InventoryItem;
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl.ShoppingCartData;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.initialLoad.InitialData;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.ShoppingCart;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.InventoryItem;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.implementation.ShoppingCartData;
 
 import java.io.BufferedReader;
 import java.io.IOException;

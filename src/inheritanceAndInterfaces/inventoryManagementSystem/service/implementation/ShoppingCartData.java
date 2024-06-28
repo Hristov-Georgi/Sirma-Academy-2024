@@ -1,6 +1,6 @@
-package inheritanceAndInterfaces.inventoryManagementSystem.interfaces.classesImpl;
+package inheritanceAndInterfaces.inventoryManagementSystem.service.implementation;
 
-import inheritanceAndInterfaces.inventoryManagementSystem.interfaces.ShoppingCart;
+import inheritanceAndInterfaces.inventoryManagementSystem.service.ShoppingCart;
 
 import java.io.BufferedWriter;
 import java.io.File;
