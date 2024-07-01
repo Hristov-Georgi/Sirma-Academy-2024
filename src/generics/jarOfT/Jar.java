@@ -11,11 +11,11 @@ public class Jar<T> {
     }
 
     public void add(T element){
-
+        this.jar.push(element);
     }
 
-    public void remove(){
-
+    public T remove(){
+        return this.jar.pop();
     }
 
 }
