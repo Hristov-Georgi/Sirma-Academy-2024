@@ -1,6 +1,7 @@
-package generics.genericBox;
+package generics.genericBoxAndGenericSwapMethod;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class Main {
 
         /*
          * Reads input data from console and stores it in the Box class instance.
+         * Last reads int[] with two indexes which will be swapped.
          */
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
@@ -24,6 +26,12 @@ public class Main {
                 box.setStorage(data);
 
             }
+
+            int[] swapIndexes = Arrays.stream(reader.readLine().split("\\s+"))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+
+            box.swap(swapIndexes);
 
 
         } catch (IOException ex) {
