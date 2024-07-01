@@ -1,5 +1,9 @@
 package generics.genericScale;
 
+/**
+ * Represents a scale, accepts two parameters.
+ */
+
 public class Scale<T extends Comparable<T>> {
 
     private T left;
@@ -9,6 +13,10 @@ public class Scale<T extends Comparable<T>> {
         this.left = left;
         this.right = right;
     }
+
+    /**
+     * Compares the two class variables and returns the bigger one or null if they are equal.
+     */
 
     public T getHeavier() {
 
@@ -21,6 +29,5 @@ public class Scale<T extends Comparable<T>> {
         }
 
     }
-
 
 }

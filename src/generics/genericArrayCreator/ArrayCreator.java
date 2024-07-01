@@ -3,6 +3,11 @@ package generics.genericArrayCreator;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+/**
+ * Creates and returns array from given length and item value.
+ * All values are equal for the given length.
+ */
+
 public class ArrayCreator {
 
     public static <T> T[] create(int length, T item) {
