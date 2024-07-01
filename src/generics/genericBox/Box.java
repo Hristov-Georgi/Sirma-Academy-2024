@@ -3,6 +3,10 @@ package generics.genericBox;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores any type of data.
+ */
+
 public class Box<T>{
 
     private List<T> storage;
@@ -11,14 +15,23 @@ public class Box<T>{
         this.storage = new ArrayList<>();
     }
 
+    /**
+     * Return collection of stored data.
+     */
     public List<T> getStorage() {
         return storage;
     }
 
+    /**
+     * Add item(data) to the collection.
+     */
     public void setStorage(T item) {
         this.storage.add(item);
     }
 
+    /**
+     * Return StringBuilder with all stored data in required format for printing.
+     */
     @Override
     public String toString() {
 
