@@ -18,7 +18,7 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     @Override
     public void add(E element) {
 
-        if (size > this.capacity - 1) {
+        if (size == this.capacity) {
             increaseCapacity();
         }
 
@@ -32,8 +32,8 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
 
         if (isIndexInBounds(index)) {
             element = this.array[index];
-            this.array[index] = EMPTY_ARR_DEFAULT_VALUE[0];
             copyArrElementsAfterRemove(index);
+            this.array[this.size - 1] = EMPTY_ARR_DEFAULT_VALUE[0];
             this.size--;
         } else {
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
@@ -137,13 +137,9 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
 
     private void copyArrElementsAfterRemove(int index) {
 
-        E[] newArr = Arrays.copyOfRange(this.array, 0, index);
-
         for (int i = index; i < size - 1 ; i++) {
-            newArr[i] = this.array[i + 1];
+            this.array[i] = this.array[i + 1];
         }
-
-        this.array = newArr;
 
     }
 
