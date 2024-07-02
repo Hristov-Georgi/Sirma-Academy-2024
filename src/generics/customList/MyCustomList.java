@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     private static final int INITIAL_ARRAY_SIZE = 16;
+    private final E[] EMPTY_ARR_DEFAULT_VALUE = (E[]) new Object[1];
 
     private E[] array;
     private int size = 0;
@@ -31,7 +32,7 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
 
         if (isIndexInBounds(index)) {
             element = this.array[index];
-            this.array[index] = null;
+            this.array[index] = EMPTY_ARR_DEFAULT_VALUE[0];
             copyArrElementsAfterRemove(index);
             this.size--;
         } else {
@@ -41,7 +42,6 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
         if (this.size < this.capacity / 2) {
             decreaseCapacity();
         }
-
         return element;
     }
 
@@ -55,7 +55,6 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
             }
 
         }
-
         return false;
     }
 
