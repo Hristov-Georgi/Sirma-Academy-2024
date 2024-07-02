@@ -7,7 +7,7 @@ import java.util.List;
  * Stores any type of data.
  */
 
-public class Box<T>{
+public class Box<T extends Comparable<T>>{
 
     private List<T> storage;
 
@@ -45,6 +45,21 @@ public class Box<T>{
             this.storage.set(secondIndex, firstObject);
 
         }
+
+    }
+
+    public int countGreaterElements(T element) {
+
+        int counter = 0;
+
+        for(T e : this.storage) {
+            if (e.compareTo(element) > 0) {
+                counter++;
+            }
+
+        }
+
+        return counter;
 
     }
 

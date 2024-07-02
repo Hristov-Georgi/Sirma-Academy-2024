@@ -8,7 +8,7 @@ public class Main {
         /*
          * Stores read data.
          */
-        Box<Integer> box = new Box<>();
+        Box<String> box = new Box<>();
 
         /*
          * Reads input data from console and stores it in the Box class instance.
@@ -20,7 +20,8 @@ public class Main {
 
             while (linesNum-- > 0) {
 
-                int data = Integer.parseInt(reader.readLine());
+                //int data = Integer.parseInt(reader.readLine());
+                String data = reader.readLine();
 
                 box.setStorage(data);
 
@@ -28,7 +29,8 @@ public class Main {
 
             String lastValue = reader.readLine();
 
-            box.swap(lastValue);
+            //box.swap(lastValue);
+            System.out.println(box.countGreaterElements(lastValue));
 
         } catch (NumberFormatException | IOException ex) {
             System.out.println(ex.getMessage());
@@ -37,7 +39,9 @@ public class Main {
         /*
          * Print all stored data.
          */
-        System.out.println(box);
+        //System.out.println(box);
+
+
 
     }
 
