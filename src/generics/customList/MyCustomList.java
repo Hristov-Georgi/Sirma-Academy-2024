@@ -27,7 +27,18 @@ public class MyCustomList<T extends Comparable<T>> implements CustomList<T> {
 
     @Override
     public T remove(int index) {
-        return null;
+        T element;
+
+        if (0 <= index && index < size) {
+            element = this.array[index];
+            this.array[index] = null;
+            copyArrElementsAfterRemove(index);
+            this.size--;
+        } else {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
+        }
+
+        return element;
     }
 
     @Override
@@ -55,9 +66,22 @@ public class MyCustomList<T extends Comparable<T>> implements CustomList<T> {
         return null;
     }
 
+    private void copyArrElementsAfterRemove(int index) {
+
+        T[] newArr = Arrays.copyOfRange(this.array, 0, index);
+
+        for (int i = index; i < size - 1 ; i++) {
+            newArr[i] = this.array[i + 1];
+        }
+
+        this.array = newArr;
+
+    }
+
     private void ensureCapacity() {
-        this.capacity *= 2;
-        this.array = Arrays.copyOf(this.array, this.capacity);
+        int newCapacity = this.capacity * 2;
+        this.array = Arrays.copyOf(this.array, newCapacity);
+        this.capacity = newCapacity;
     }
 
 }
