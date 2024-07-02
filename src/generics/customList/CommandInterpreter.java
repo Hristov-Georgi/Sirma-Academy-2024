@@ -7,8 +7,7 @@ public class CommandInterpreter {
 
         CustomList<String> myList = new MyCustomList<>();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             BufferedWriter writer = new BufferedWriter(new PrintWriter(System.out))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
             String line = reader.readLine();
 
@@ -60,12 +59,10 @@ public class CommandInterpreter {
                         System.out.println("Invalid command: " + commands[0]);
                         break;
                 }
-
-
                 line = reader.readLine();
             }
 
-        } catch (IOException ex) {
+        } catch (IndexOutOfBoundsException | NullPointerException | IOException ex) {
             System.out.println(ex.getMessage());
         }
 
