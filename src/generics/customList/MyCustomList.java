@@ -87,12 +87,46 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
 
     @Override
     public E getMax() {
-        return null;
+
+        if (this.size > 0) {
+            E maxElement = this.array[0];
+
+            for (E e : this.array) {
+
+                if (e.compareTo(maxElement) > 0) {
+                    maxElement = e;
+                }
+
+            }
+
+            return maxElement;
+
+        }
+
+        throw new NullPointerException("Cannot get maximum element of empty list collection.");
+
     }
 
     @Override
     public E getMin() {
-        return null;
+
+        if (this.size > 0) {
+            E minElement = this.array[0];
+
+            for (E e : this.array) {
+
+                if (e.compareTo(minElement) < 0) {
+                    minElement = e;
+                }
+
+            }
+
+            return minElement;
+
+        }
+
+        throw new NullPointerException("Cannot get minimum element of empty list collection.");
+
     }
 
     private void copyArrElementsAfterRemove(int index) {
