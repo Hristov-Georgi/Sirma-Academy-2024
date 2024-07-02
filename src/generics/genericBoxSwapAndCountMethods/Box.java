@@ -48,6 +48,10 @@ public class Box<T extends Comparable<T>>{
 
     }
 
+    /**
+     * Return the count of greater elements from the collection.
+     */
+
     public int countGreaterElements(T element) {
 
         int counter = 0;
