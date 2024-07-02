@@ -1,4 +1,4 @@
-package generics.genericBoxAndGenericSwapMethod;
+package generics.genericBoxSwapAndCountMethods;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,6 @@
-package generics.genericBoxAndGenericSwapMethod;
+package generics.genericBoxSwapAndCountMethods;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
