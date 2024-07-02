@@ -48,9 +48,9 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     @Override
     public boolean contains(E element) {
 
-        for(E e : this.array) {
+        for(int i = 0; i < this.size; i++) {
 
-            if (e.compareTo(element) == 0) {
+            if (this.array[i].compareTo(element) == 0) {
                 return true;
             }
 
@@ -73,9 +73,9 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     public int countGreaterThan(E element) {
         int counter = 0;
 
-        for (E e : this.array) {
+        for (int i = 0; i < this.size; i++) {
 
-            if (e.compareTo(element) > 0) {
+            if (this.array[i].compareTo(element) > 0) {
                 counter++;
             }
 
@@ -90,14 +90,13 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
         if (this.size > 0) {
             E maxElement = this.array[0];
 
-            for (E e : this.array) {
+            for (int i = 1; i < this.size; i++) {
 
-                if (e.compareTo(maxElement) > 0) {
-                    maxElement = e;
+                if (this.array[i].compareTo(maxElement) > 0) {
+                    maxElement = this.array[i];
                 }
 
             }
-
             return maxElement;
 
         }
@@ -112,14 +111,13 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
         if (this.size > 0) {
             E minElement = this.array[0];
 
-            for (E e : this.array) {
+            for (int i = 1; i < this.size; i++) {
 
-                if (e.compareTo(minElement) < 0) {
-                    minElement = e;
+                if (this.array[i].compareTo(minElement) < 0) {
+                    minElement = this.array[i];
                 }
 
             }
-
             return minElement;
 
         }
@@ -131,8 +129,8 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     @Override
     public void printAllElements() {
 
-        for (E e : this.array) {
-            System.out.println(e);
+        for (int i = 0; i < this.size; i++) {
+            System.out.println(this.array[i]);
         }
 
     }
@@ -171,6 +169,5 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
                 0 <= secondIndex &&
                 secondIndex < this.size;
     }
-
 
 }
