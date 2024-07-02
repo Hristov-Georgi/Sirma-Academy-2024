@@ -33,9 +33,10 @@ public class Box<T>{
      * Swap two elements at given indexes.
      */
 
-    public void swap(int[] indexes) {
-        int firstIndex = indexes[0];
-        int secondIndex = indexes[1];
+    public void swap(String indexes) {
+            String[] indexArr = indexes.split("\\s+");
+            int firstIndex = Integer.parseInt(indexArr[0]);
+            int secondIndex = Integer.parseInt(indexArr[1]);
 
         if (validateIndexes(firstIndex, secondIndex)) {
 

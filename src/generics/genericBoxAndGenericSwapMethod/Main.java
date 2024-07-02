@@ -27,14 +27,11 @@ public class Main {
 
             }
 
-            int[] swapIndexes = Arrays.stream(reader.readLine().split("\\s+"))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
+            String lastValue = reader.readLine();
 
-            box.swap(swapIndexes);
+            box.swap(lastValue);
 
-
-        } catch (IOException ex) {
+        } catch (NumberFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }
 
