@@ -1,6 +1,6 @@
 package generics.customList;
 
-public interface CustomList<T extends Comparable<T>>{
+public interface CustomList<T>{
 
     void add(T element);
 
