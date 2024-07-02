@@ -1,18 +1,18 @@
 package generics.customList;
 
-public interface CustomList<T>{
+public interface CustomList<E>{
 
-    void add(T element);
+    void add(E element);
 
-    T remove(int index);
+    E remove(int index);
 
-    boolean contains(T element);
+    boolean contains(E element);
 
     void swap(int firstIndex, int secondIndex);
 
-    int countGreaterThan(T element);
+    int countGreaterThan(E element);
 
-    public T getMax();
+    public E getMax();
 
-    public T getMin();
+    public E getMin();
 }
