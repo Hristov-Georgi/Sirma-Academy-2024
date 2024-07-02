@@ -18,7 +18,7 @@ public class MyCustomList<T extends Comparable<T>> implements CustomList<T> {
     public void add(T element) {
 
         if (size > this.capacity - 1) {
-            ensureCapacity();
+            increaseCapacity();
         }
 
         this.array[this.size] = element;
@@ -36,6 +36,10 @@ public class MyCustomList<T extends Comparable<T>> implements CustomList<T> {
             this.size--;
         } else {
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
+        }
+
+        if (this.size < this.capacity / 2) {
+            decreaseCapacity();
         }
 
         return element;
@@ -78,7 +82,13 @@ public class MyCustomList<T extends Comparable<T>> implements CustomList<T> {
 
     }
 
-    private void ensureCapacity() {
+    private void decreaseCapacity() {
+        int newCapacity = this.capacity / 2;
+        this.array = Arrays.copyOf(this.array, newCapacity);
+        this.capacity = newCapacity;
+    }
+
+    private void increaseCapacity() {
         int newCapacity = this.capacity * 2;
         this.array = Arrays.copyOf(this.array, newCapacity);
         this.capacity = newCapacity;
