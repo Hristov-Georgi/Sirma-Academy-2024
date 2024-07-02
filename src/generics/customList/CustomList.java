@@ -1,6 +1,6 @@
 package generics.customList;
 
-public interface CustomList<E>{
+public interface CustomList<E> {
 
     void add(E element);
 
@@ -15,4 +15,6 @@ public interface CustomList<E>{
     public E getMax();
 
     public E getMin();
+
+    void printAllElements();
 }

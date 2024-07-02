@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     private static final int INITIAL_ARRAY_SIZE = 16;
-    private final E[] EMPTY_ARR_DEFAULT_VALUE = (E[]) new Object[1];
+    private final E[] EMPTY_ARR_DEFAULT_VALUE = (E[]) new Comparable[1];
 
     private E[] array;
     private int size = 0;
     private int capacity = INITIAL_ARRAY_SIZE;
 
     public MyCustomList() {
-        this.array = (E[]) new Object[INITIAL_ARRAY_SIZE];
+        this.array = (E[]) new Comparable[INITIAL_ARRAY_SIZE];
     }
 
 
@@ -128,6 +128,15 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
 
     }
 
+    @Override
+    public void printAllElements() {
+
+        for (E e : this.array) {
+            System.out.println(e);
+        }
+
+    }
+
     private void copyArrElementsAfterRemove(int index) {
 
         E[] newArr = Arrays.copyOfRange(this.array, 0, index);
@@ -162,5 +171,6 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
                 0 <= secondIndex &&
                 secondIndex < this.size;
     }
+
 
 }
