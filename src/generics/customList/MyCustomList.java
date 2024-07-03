@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
     private static final int INITIAL_ARRAY_SIZE = 16;
-    private final E[] EMPTY_ARR_DEFAULT_VALUE = (E[]) new Comparable[1];
 
     private E[] array;
     private int size = 0;
@@ -33,7 +32,7 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
         if (isIndexInBounds(index)) {
             element = this.array[index];
             copyArrElementsAfterRemove(index);
-            this.array[this.size - 1] = EMPTY_ARR_DEFAULT_VALUE[0];
+            this.array[this.size - 1] = null;
             this.size--;
         } else {
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
