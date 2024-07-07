@@ -3,7 +3,7 @@ package com.sirmaacademy.professionalprogram.solidprinciplesexercises.singleresp
 import java.math.BigDecimal;
 import java.time.Year;
 
-public class BookLibraryApplication {
+public class BookStoreApplication {
 
     public static void main(String[] args) {
 
