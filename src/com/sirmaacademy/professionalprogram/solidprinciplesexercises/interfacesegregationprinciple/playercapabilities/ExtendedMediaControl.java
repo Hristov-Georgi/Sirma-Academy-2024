@@ -1,8 +1,8 @@
 package com.sirmaacademy.professionalprogram.solidprinciplesexercises.interfacesegregationprinciple.playercapabilities;
 
-public interface MediaPlayer {
+public interface ExtendedMediaControl {
 
-    void play();
-    void pause();
-
+    void next();
+    void previous();
+    void shuffle();
 }
