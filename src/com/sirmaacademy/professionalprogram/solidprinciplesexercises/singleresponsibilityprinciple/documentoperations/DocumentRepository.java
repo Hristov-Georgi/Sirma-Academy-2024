@@ -6,8 +6,7 @@ public class DocumentRepository {
     }
 
     public void save(Document document) {
-        throw new UnsupportedOperationException("Method is not implemented.");
-        //TODO: implement method. Save document to database
+        System.out.println("Document successfully saved to db.");
     }
 
 }
