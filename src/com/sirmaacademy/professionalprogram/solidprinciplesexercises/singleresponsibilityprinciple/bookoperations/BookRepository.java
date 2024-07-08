@@ -6,8 +6,7 @@ public class BookRepository {
     }
 
     public void saveToDatabase(Book book) {
-        throw new UnsupportedOperationException("Method is not implemented");
-        //TODO: implement saveToDatabase method
+        System.out.println("Book was saved to database.");
     }
 
 }
