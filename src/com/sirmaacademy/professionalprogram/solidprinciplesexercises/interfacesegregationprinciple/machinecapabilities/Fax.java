@@ -1,6 +1,6 @@
 package com.sirmaacademy.professionalprogram.solidprinciplesexercises.interfacesegregationprinciple.machinecapabilities;
 
-public interface ScanMachine {
+public interface Fax {
 
-    void scan();
+    void fax();
 }

@@ -1,7 +1,6 @@
 package com.sirmaacademy.professionalprogram.solidprinciplesexercises.interfacesegregationprinciple.machinecapabilities;
 
-public interface PrintMachine {
+public interface Scanner {
 
-    void print();
-
+    void scan();
 }
