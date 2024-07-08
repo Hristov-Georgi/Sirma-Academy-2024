@@ -1,4 +1,4 @@
-package com.sirmaacademy.professionalprogram.solidprinciplesexercises.openclosedprinciple.refactorloggerclass;
+package com.sirmaacademy.professionalprogram.solidprinciplesexercises.openclosedprinciple.loggerclass;
 
 import java.io.BufferedWriter;
 import java.io.File;
