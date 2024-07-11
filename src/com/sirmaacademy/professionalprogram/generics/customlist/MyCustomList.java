@@ -13,7 +13,6 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
         this.array = (E[]) new Comparable[INITIAL_ARRAY_SIZE];
     }
 
-
     @Override
     public void add(E element) {
 
@@ -122,7 +121,6 @@ public class MyCustomList<E extends Comparable<E>> implements CustomList<E> {
         }
 
         throw new NullPointerException("Cannot get minimum element of empty list collection.");
-
     }
 
     @Override
